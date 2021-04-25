@@ -24,7 +24,7 @@ function startStreaming() {
 
     const constraints = {
       video: {
-        facingMode: "environment",
+        facingMode: { exact: "environment" }
       },
       audio: false,
     }
