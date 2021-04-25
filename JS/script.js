@@ -15,6 +15,7 @@ btnStart.addEventListener("click", startStreaming);
 
 // Start Streaming
 function startStreaming() {
+  console.log(1);
   var mediaSupport = 'mediaDevices' in navigator;
 
   if (mediaSupport && null == cameraStream) {
@@ -23,7 +24,7 @@ function startStreaming() {
       video: {
         facingMode: { exact: "environment" }
       },
-      // video:true,s
+      // video:true,
       audio: false,
     }
 
@@ -76,7 +77,7 @@ function captureSnapshot() {
 
     imageToScan = dataURItoBlob(img.src);
 
-    scanFile(imageToScan);
+    ScanCode(imageToScan);
   }
 }
 
