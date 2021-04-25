@@ -22,7 +22,14 @@ function startStreaming() {
 
   if (mediaSupport && null == cameraStream) {
 
-    navigator.mediaDevices.getUserMedia({ video: true })
+    const constraints = {
+      video: {
+        facingMode: "environment",
+      },
+      audio: false,
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints)
       .then(function (mediaStream) {
 
         cameraStream = mediaStream;
