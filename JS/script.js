@@ -117,6 +117,8 @@ function ScanCode(file) {
   .catch(err => {
     // failure, handle it.
     console.log(`Error scanning file. Reason: ${err}`)
+    alert(err);
+    alert(JSON.stringify(err));
   });
 }
 
