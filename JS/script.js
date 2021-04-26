@@ -108,6 +108,7 @@ function ScanCode(file) {
       // success, use qrCodeMessage
       console.log(qrCodeMessage);
       alert(qrCodeMessage);
+      failureCount = 0;
       window.location = 'https://webwaale.com';
     })
     .catch(err => {
@@ -116,6 +117,7 @@ function ScanCode(file) {
         alert('try again');
         captureStream();
       } else {
+        failureCount = 0;
         console.log(`Error scanning file. Reason: ${err}`)
         alert('Unable to scan QR code');
         // alert(JSON.stringify(err));
