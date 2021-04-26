@@ -79,7 +79,7 @@ async function captureStream() {
 
     ScanCode(QRImage);
 
-    alert('completed scaning');
+    // alert('completed scaning');
   }
 }
 
@@ -108,15 +108,17 @@ function ScanCode(file) {
       // success, use qrCodeMessage
       console.log(qrCodeMessage);
       alert(qrCodeMessage);
+      window.location = 'https://webwaale.com';
     })
     .catch(err => {
       failureCount++;
       if (failureCount <= 10) {
+        alert('try again');
         captureStream();
       } else {
         console.log(`Error scanning file. Reason: ${err}`)
-        alert(err);
-        alert(JSON.stringify(err));
+        alert('Unable to scan QR code');
+        // alert(JSON.stringify(err));
       }
       // failure, handle it.
 
