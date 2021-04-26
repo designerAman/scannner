@@ -113,8 +113,8 @@ function ScanCode(file) {
     })
     .catch(err => {
       failureCount++;
-      if (failureCount <= 10) {
-        alert('try again');
+      if (failureCount <= 30) {
+        // alert('try again');
         captureStream();
       } else {
         failureCount = 0;
