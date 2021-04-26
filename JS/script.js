@@ -18,10 +18,10 @@ function startStreaming() {
 
   if (mediaSupport && null == cameraStream) {
     const constraints = {
-      // video: {
-      //   facingMode: { exact: "environment" }
-      // },
-      video: true,
+      video: {
+        facingMode: { exact: "environment" }
+      },
+      // video: true,
       audio: false,
     }
 
