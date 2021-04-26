@@ -11,9 +11,9 @@ btnStop.addEventListener("click", stopStreaming);
 // btnCapture.addEventListener("click", captureStream);
 
 var cameraStream = null;
-
+let failureCount = 0;
 function startStreaming() {
-  alert('start');
+  // alert('start');
   const mediaSupport = 'mediaDevices' in navigator;
 
   if (mediaSupport && null == cameraStream) {
@@ -58,7 +58,7 @@ function stopStreaming() {
 }
 
 async function captureStream() {
-  alert('start capturing');
+  // alert('start capturing');
 
   if (cameraStream !== null) {
     const ctx = capture.getContext('2d');
@@ -84,7 +84,7 @@ async function captureStream() {
 }
 
 function dataURLtoFile(dataurl, filename) {
-  alert('start converting');
+  // alert('start converting');
 
   var arr = dataurl.split(','),
     mime = arr[0].match(/:(.*?);/)[1],
@@ -102,7 +102,7 @@ function dataURLtoFile(dataurl, filename) {
 const html5QrCode = new Html5Qrcode(/* element id */ "reader");
 
 function ScanCode(file) {
-  alert('start scanning');
+  // alert('start scanning');
   html5QrCode.scanFile(file, /* showImage= */true)
     .then(qrCodeMessage => {
       // success, use qrCodeMessage
@@ -110,9 +110,15 @@ function ScanCode(file) {
       alert(qrCodeMessage);
     })
     .catch(err => {
+      failureCount++;
+      if (failureCount <= 10) {
+        captureStream();
+      } else {
+        console.log(`Error scanning file. Reason: ${err}`)
+        alert(err);
+        alert(JSON.stringify(err));
+      }
       // failure, handle it.
-      console.log(`Error scanning file. Reason: ${err}`)
-      alert(err);
-      alert(JSON.stringify(err));
+
     });
 }
