@@ -4,7 +4,7 @@ var btnStop = document.getElementById("btn-stop");
 
 var stream = document.getElementById("stream");
 var capture = document.getElementById("capture");
-var snapshot = document.getElementById("snapshot");
+// var snapshot = document.getElementById("snapshot");
 
 btnStart.addEventListener("click", startStreaming);
 btnStop.addEventListener("click", stopStreaming);
@@ -17,10 +17,10 @@ function startStreaming() {
 
   if (mediaSupport && null == cameraStream) {
     const constraints = {
-      video: {
-        facingMode: { exact: "environment" }
-      },
-      // video: true,
+      // video: {
+      //   facingMode: { exact: "environment" }
+      // },
+      video: true,
       audio: false,
     }
 
@@ -66,9 +66,9 @@ async function captureStream() {
     img.src = capture.toDataURL("image/png");
     img.width = 320;
 
-    snapshot.innerHTML = '';
+    // snapshot.innerHTML = '';
 
-    snapshot.appendChild(img);
+    // snapshot.appendChild(img);
 
     const QRImage = await dataURLtoFile(img.src, 'QR.png');
 
@@ -99,12 +99,12 @@ function ScanCode(file) {
   .then(qrCodeMessage => {
     // success, use qrCodeMessage
     console.log(qrCodeMessage);
-    // alert(qrCodeMessage);
+    alert(qrCodeMessage);
   })
   .catch(err => {
     // failure, handle it.
     console.log(`Error scanning file. Reason: ${err}`)
-    // alert(err);
-    // alert(JSON.stringify(err));
+    alert(err);
+    alert(JSON.stringify(err));
   });
 }
