@@ -107,7 +107,7 @@ function ScanCode(file) {
     .then(qrCodeMessage => {
       // success, use qrCodeMessage
       console.log(qrCodeMessage);
-      alert(qrCodeMessage);
+      // alert(qrCodeMessage);
       failureCount = 0;
       window.location = 'https://webwaale.com';
     })
