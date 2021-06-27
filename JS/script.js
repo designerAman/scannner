@@ -93,7 +93,7 @@ function ScanCode(file) {
     .then(qrCodeMessage => {
       console.log(qrCodeMessage);
       failureCount = 0;
-      window.location = qrCodeMessage;
+      window.location = `${qrCodeMessage}?scannedBy=webwaale`;
     })
     .catch(err => {
       failureCount++;
