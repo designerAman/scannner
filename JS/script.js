@@ -1,14 +1,16 @@
-var btnStart = document.getElementById("btn-start");
-var btnStop = document.getElementById("btn-stop");
+// var btnStart = document.getElementById("btn-start");
+// var btnStop = document.getElementById("btn-stop");
 // var btnCapture = document.getElementById("btn-capture");
+var btnRestart = document.getElementById("btn-restart");
 
 var stream = document.getElementById("stream");
 var capture = document.getElementById("capture");
 // var snapshot = document.getElementById("snapshot");
 
-btnStart.addEventListener("click", startStreaming);
-btnStop.addEventListener("click", stopStreaming);
+// btnStart.addEventListener("click", startStreaming);
+// btnStop.addEventListener("click", stopStreaming);
 // btnCapture.addEventListener("click", captureStream);
+btnRestart.addEventListener("click", restartStreaming);
 
 var cameraStream = null;
 let failureCount = 0;
@@ -55,6 +57,11 @@ function stopStreaming() {
 
     cameraStream = null;
   }
+}
+
+async function restartStreaming () {
+  await stopStreaming();
+  await startStreaming();
 }
 
 async function captureStream() {
@@ -113,12 +120,13 @@ function ScanCode(file) {
     })
     .catch(err => {
       failureCount++;
-      if (failureCount <= 30) {
+      if (failureCount <= 50) {
         // alert('try again');
         captureStream();
       } else {
         failureCount = 0;
         console.log(`Error scanning file. Reason: ${err}`)
+        alert(err)
         alert('Unable to scan QR code');
         // alert(JSON.stringify(err));
       }

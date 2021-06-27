@@ -9,6 +9,14 @@ html, body{
   width: 100%;
 }
 
+.top {
+  height: 70px;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .button-group, .play-area {
   border: 1px solid grey;
   padding: 1em 1%;
@@ -28,6 +36,8 @@ html, body{
 }
 
 #stream {
+  /* height: calc(100% -70px); */
+  /* width: 100%; */
   border: 2px solid red;
 }
 
