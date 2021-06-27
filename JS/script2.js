@@ -113,7 +113,7 @@ function ScanCode(file) {
   html5QrCode.scanFile(file, /* showImage= */true)
     .then(qrCodeMessage => {
       // success, use qrCodeMessage
-      console.log(qrCodeMessage);
+      console.log({qrCodeMessage});
       // alert(qrCodeMessage);
       failureCount = 0;
       window.location = 'https://webwaale.com';

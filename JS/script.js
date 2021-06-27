@@ -66,7 +66,7 @@ async function captureStream() {
 
     const QRImage = await dataURLtoFile(img.src, 'QR.png');
 
-    console.log(QRImage);
+    console.log({QRImage});
 
     ScanCode(QRImage);
   }
