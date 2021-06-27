@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./CSS/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <div class="top">
+    <h1>Test 11</h1>
+    <button id="btn-restart" type="button" class="button">Restart Scanning</button>
+  </div> -->
+  <!-- <div class="button-group">
+    <button id="btn-start" type="button" class="button">Start Scanning</button>
+    <button id="btn-stop" type="button" class="button">Stop Scanning</button>
+    <button id="btn-capture" type="button" class="button">Capture Streaming</button>
+  </div> -->
+
+  <div class="play-area">
+    <div class="play-area-sub">
+      <!-- <h3>The Stream</h3> -->
+      <video id="stream" width="350" height="600"></video>
+    </div>
+    <div class="play-area-sub">
+      <!-- <h3>The Capture</h3> -->
+      <canvas id="capture" width="350" height="600"></canvas>
+      <!-- <div id="snapshot"></div> -->
+    </div>
+  </div>
+
+  <div id="reader"></div>
+
+  <script src="./JS/html5-qrcode.min.js"></script>
+  <script src="./JS/script.js"></script>
+</body>
+
+</html>

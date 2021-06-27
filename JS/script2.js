@@ -1,10 +1,21 @@
+// var btnStart = document.getElementById("btn-start");
+// var btnStop = document.getElementById("btn-stop");
+// var btnCapture = document.getElementById("btn-capture");
+var btnRestart = document.getElementById("btn-restart");
+
 var stream = document.getElementById("stream");
 var capture = document.getElementById("capture");
+// var snapshot = document.getElementById("snapshot");
+
+// btnStart.addEventListener("click", startStreaming);
+// btnStop.addEventListener("click", stopStreaming);
+// btnCapture.addEventListener("click", captureStream);
+btnRestart.addEventListener("click", restartStreaming);
 
 var cameraStream = null;
 let failureCount = 0;
-
 function startStreaming() {
+  // alert('start');
   const mediaSupport = 'mediaDevices' in navigator;
 
   if (mediaSupport && null == cameraStream) {
@@ -48,12 +59,13 @@ function stopStreaming() {
   }
 }
 
-(async function restartStreaming() {
+async function restartStreaming () {
   await stopStreaming();
   await startStreaming();
-})();
+}
 
 async function captureStream() {
+  // alert('start capturing');
 
   if (cameraStream !== null) {
     const ctx = capture.getContext('2d');
@@ -64,15 +76,23 @@ async function captureStream() {
     img.src = capture.toDataURL("image/png");
     img.width = 320;
 
+    // snapshot.innerHTML = '';
+
+    // snapshot.appendChild(img);
+
     const QRImage = await dataURLtoFile(img.src, 'QR.png');
 
     console.log(QRImage);
 
     ScanCode(QRImage);
+
+    // alert('completed scaning');
   }
 }
 
 function dataURLtoFile(dataurl, filename) {
+  // alert('start converting');
+
   var arr = dataurl.split(','),
     mime = arr[0].match(/:(.*?);/)[1],
     bstr = atob(arr[1]),
@@ -89,21 +109,28 @@ function dataURLtoFile(dataurl, filename) {
 const html5QrCode = new Html5Qrcode(/* element id */ "reader");
 
 function ScanCode(file) {
+  // alert('start scanning');
   html5QrCode.scanFile(file, /* showImage= */true)
     .then(qrCodeMessage => {
+      // success, use qrCodeMessage
       console.log(qrCodeMessage);
+      // alert(qrCodeMessage);
       failureCount = 0;
       window.location = 'https://webwaale.com';
     })
     .catch(err => {
       failureCount++;
       if (failureCount <= 50) {
+        // alert('try again');
         captureStream();
       } else {
         failureCount = 0;
         console.log(`Error scanning file. Reason: ${err}`)
         alert(err)
         alert('Unable to scan QR code');
+        // alert(JSON.stringify(err));
       }
+      // failure, handle it.
+
     });
 }
