@@ -116,7 +116,7 @@ function ScanCode(file) {
       console.log({qrCodeMessage});
       // alert(qrCodeMessage);
       failureCount = 0;
-      window.location = 'https://webwaale.com';
+      window.location = qrCodeMessage;
     })
     .catch(err => {
       failureCount++;
