@@ -93,7 +93,30 @@ function ScanCode(file) {
     .then(qrCodeMessage => {
       console.log(qrCodeMessage);
       failureCount = 0;
-      window.location = `${qrCodeMessage}?scannedBy=webwaale`;
+      const urlSecret = qrCodeMessage.split('/')[qrCodeMessage.split('/').length -1]
+      const secretName = qrCodeMessage.split('/')[qrCodeMessage.split('/').length -2]
+      fetch(`http://172.105.61.108/api/restaurant/restaurantUserWebsite/scanningUniqueCode/table/${urlSecret}`, {
+        method: 'POST',
+        headers: {
+          secretName,
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log({data});
+          if(data.error) {
+            throw data;
+          }
+          window.location = `${qrCodeMessage}?scannedBy=webwaale`;
+        })
+        .catch(err => {
+          console.log({err});
+          if(err.error) {
+            alert(err.error.message)
+          } else {
+            alert('some error occurred! please try again later');
+          }
+        });
     })
     .catch(err => {
       failureCount++;
